@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Winter Arc</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0b0d;--bg2:#220d06;--card:rgba(255,255,255,.05);--ink:#f6efe9;--mut:#ab9d92;--ice:#ff6a1a;--aur:#ffc233;--amb:#ff3d2e;--h2o:#4fb3ff;--line:rgba(255,255,255,.14);color-scheme:dark}
+*{box-sizing:border-box}html,body{margin:0}
+body{background:linear-gradient(var(--bg),var(--bg2)) fixed;color:var(--ink);font:16px/1.4 'Bricolage Grotesque',system-ui,sans-serif;min-height:100vh}
+main{position:relative;z-index:1;max-width:480px;margin:0 auto;padding:12px 16px 24px}
+.hero{position:relative;border-radius:18px;overflow:hidden;margin-bottom:12px;background:linear-gradient(#4a1608,#0b0b0d)}
+.hero svg{display:block;width:100%}
+.hero h1{position:absolute;left:14px;top:10px;margin:0;font-size:32px}
+#dayline{position:absolute;left:14px;top:48px;margin:0;color:#ffb58a}
+nav{display:flex;gap:6px;margin-bottom:12px}
+nav button{flex:1;padding:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);border-radius:10px;font:inherit;font-weight:600}
+nav button.on{background:var(--ice);color:#1a0a00;border-color:var(--ice)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin-bottom:12px}
+h2{font-size:17px;margin:0 0 8px}
+label{display:block;font-size:14px;color:var(--mut);margin-bottom:8px}
+input[type=number],input[type=time],input[type=date]{width:100%;padding:10px;margin-top:4px;border:1px solid var(--line);border-radius:10px;background:rgba(0,0,0,.25);color:var(--ink);font:inherit}
+input:disabled{opacity:.45}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+button{font:inherit;cursor:pointer}
+.row{display:flex;gap:8px;margin:10px 0}.row input{flex:1;margin:0}
+.row button,.btn,.now{padding:10px 14px;border-radius:10px;border:0;background:var(--ice);color:#1a0a00;font-weight:700}
+.now{padding:6px 12px;background:var(--line);color:var(--ink);font-size:14px}
+.link{background:none;border:0;color:var(--mut);text-decoration:underline;padding:4px}
+.glass{position:relative;width:150px;height:190px;margin:6px auto 12px;border:3px solid var(--h2o);border-top-width:2px;border-radius:6px 6px 36px 36px;overflow:hidden;background:rgba(0,0,0,.2)}
+#fill{position:absolute;left:0;right:0;bottom:0;height:0;background:linear-gradient(var(--h2o),#1c6f9c);transition:height .6s}
+.gtxt{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-shadow:0 0 8px #0a1726}
+.gtxt b{font-size:38px;font-weight:800}.gtxt span{font-size:13px;color:#cfe3ef}
+.ck{display:flex;align-items:center;gap:10px;padding:8px 0;color:var(--ink);font-size:16px;margin:0}
+.ck input{width:22px;height:22px;accent-color:var(--aur);flex:none}.ck .sm{margin-left:auto}
+.sm{font-size:13px;color:var(--mut)}
+.q{font-size:17px;font-weight:600;line-height:1.35;cursor:pointer}
+.badges{display:flex;justify-content:space-between;gap:4px}
+.bd{width:48px;height:54px;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--line);color:var(--mut);font-weight:800;font-size:16px;line-height:1}
+.bd small{font-size:9px;font-weight:600}.bd.on{background:linear-gradient(#ffc233,#ff6a1a);color:#1a0a00}
+#streak{color:var(--aur);font-weight:700;text-align:center;margin:0 0 6px}
+#alert{position:sticky;top:8px;z-index:5;background:linear-gradient(90deg,#ff6a1a,#ff3d2e);color:#fff;border-radius:12px;padding:12px;margin-bottom:12px;font-weight:700}
+#alert button{margin:8px 8px 0 0;padding:8px 12px;border:0;border-radius:8px;font-weight:700}
+[hidden]{display:none!important}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{text-align:left;padding:6px 3px;border-bottom:1px solid var(--line)}
+textarea{width:100%;height:80px;background:rgba(0,0,0,.25);color:var(--ink);border:1px solid var(--line);border-radius:10px}
+.sw{display:flex;align-items:center;gap:10px;margin-bottom:12px;font-size:16px}.sw input{width:22px;height:22px}
+h1,h2,.gtxt b,.bd,#arc text{font-family:Anton,Impact,'Arial Narrow',sans-serif;font-weight:400;letter-spacing:.03em}
+h1{text-transform:uppercase}
+.q{border-left:4px solid var(--ice)}
+</style></head><body>
+<main>
+<div class="hero">
+<svg viewBox="0 0 400 130" aria-hidden="true"><defs><radialGradient id="gl" cx=".5" cy=".6" r=".6"><stop offset="0" stop-color="#ff6a1a" stop-opacity=".55"/><stop offset="1" stop-color="#ff6a1a" stop-opacity="0"/></radialGradient><linearGradient id="fl" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#ff3d2e"/><stop offset=".6" stop-color="#ff8a1f"/><stop offset="1" stop-color="#ffc233"/></linearGradient></defs><circle cx="290" cy="60" r="70" fill="url(#gl)"/><g transform="translate(90 0)"><path d="M200 8C214 32 234 44 234 68C234 86 219 96 200 96C181 96 166 86 166 68C166 54 176 46 183 34C187 44 192 49 197 49C194 36 196 22 200 8Z" fill="url(#fl)"/><path d="M200 50C208 62 218 68 218 80C218 90 210 96 200 96C190 96 182 90 182 80C182 72 188 66 192 60C194 66 197 68 200 68C199 62 199 56 200 50Z" fill="#ffd36b"/></g><line x1="14" y1="98" x2="386" y2="98" stroke="#8b8b93" stroke-width="6" stroke-linecap="round"/><rect x="40" y="68" width="14" height="60" rx="3" fill="#2b2b31"/><rect x="56" y="78" width="10" height="40" rx="3" fill="#3b3b43"/><rect x="346" y="68" width="14" height="60" rx="3" fill="#2b2b31"/><rect x="334" y="78" width="10" height="40" rx="3" fill="#3b3b43"/><rect x="0" y="127" width="400" height="3" fill="#ff6a1a"/></svg>
+<h1>Winter Arc</h1><p id="dayline"></p></div>
+<nav><button data-t="today" class="on">Today</button><button data-t="hist">History</button><button data-t="set">Reminders</button></nav>
+<div id="alert" hidden><span id="atxt"></span><br><button id="aok"></button><button id="ax">Dismiss</button></div>
+
+<section id="today">
+<div class="card"><svg id="arc" viewBox="0 0 320 175" width="100%"></svg><p id="streak"></p></div>
+<div class="card q" id="quote"></div>
+<div class="glass"><div id="fill"></div><div class="gtxt"><b id="wml">0</b><span id="wgoal"></span></div></div>
+<div class="row"><button data-add="250">+250</button><button data-add="500">+500</button><input id="wc" type="number" inputmode="numeric" placeholder="ml"><button id="wadd">Add</button></div>
+<div style="text-align:center"><button class="link" id="undo">Undo last drink</button></div>
+
+<div class="card"><h2>Sleep</h2>
+<div class="g2">
+<div><label>&#9790; Went to bed<input id="bed" type="time"></label><button class="now" id="bnow">Now</button></div>
+<div><label>&#9728; Woke up<input id="wake" type="time"></label><button class="now" id="wnow">Now</button></div></div>
+<p class="sm" id="sstat"></p></div>
+
+<div class="card"><label>Steps today<input id="steps" type="number" inputmode="numeric"></label>
+<div class="g2"><label>Weight (kg)<input id="weight" type="number" step="0.1" inputmode="decimal"></label>
+<label>Waist (cm)<input id="waist" type="number" step="0.1" inputmode="decimal"></label></div>
+<p class="sm" id="wst"></p></div>
+
+<div class="card"><h2>Today's habits</h2><div id="rules"></div></div>
+<div class="card"><h2>Streak badges</h2><div class="badges" id="badges"></div></div>
+</section>
+
+<section id="hist" hidden>
+<div class="card"><b>Weight</b><svg id="spark" viewBox="0 0 300 80" width="100%" height="80"></svg><div class="sm" id="wrange"></div></div>
+<div class="card"><table><thead><tr><th>Date</th><th>Water</th><th>Sleep</th><th>Steps</th><th>Kg</th><th>Done</th></tr></thead><tbody id="rows"></tbody></table></div>
+<button class="btn" id="csv">Show data as CSV</button><br><br><textarea id="csvbox" hidden readonly></textarea>
+</section>
+
+<section id="set" hidden><div class="card">
+<div class="sw"><input type="checkbox" id="sOn"><span>Reminders on</span></div>
+<div class="g2"><label>Daily water goal (ml)<input id="sGoal" type="number" inputmode="numeric"></label>
+<label>Start date<input id="sStart" type="date"></label>
+<label>Water reminder every (min)<input id="sW" type="number" inputmode="numeric"></label>
+<label>Stand/stretch every (min)<input id="sM" type="number" inputmode="numeric"></label>
+<label>Work starts<input id="sFrom" type="time"></label><label>Work ends<input id="sTo" type="time"></label>
+<label>Weigh-in alert time (Fridays)<input id="sWt" type="time"></label>
+<label>Steps goal<input id="sSg" type="number" inputmode="numeric"></label>
+<label>Sleep goal (hours)<input id="sSl" type="number" step="0.5" inputmode="decimal"></label></div>
+<div class="sw"><input type="checkbox" id="sWk"><span>Weekdays only (water and stretch)</span></div>
+<button class="btn" id="test">Test alert and allow notifications</button>
+<p class="sm">Weigh-in opens every second Friday from your start date and stays open through Sunday.</p>
+</div></section>
+</main>
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+let S;try{S=JSON.parse(localStorage.getItem('wa1'))}catch(e){}
+S=S||{};S.days=S.days||{};S.sl=S.sl||{bed:null,wake:null};
+S.s=Object.assign({on:true,goal:2500,w:60,m:50,from:'08:00',to:'17:00',wk:true,start:'2026-10-01',wt:'07:00',sg:8000,sl:7},S.s);
+const save=()=>{try{localStorage.setItem('wa1',JSON.stringify(S))}catch(e){}};
+const pad=n=>String(n).padStart(2,'0');
+const key=(d=new Date())=>d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate());
+const fmt=ms=>{const d=new Date(ms);return pad(d.getHours())+':'+pad(d.getMinutes())};
+const hm=v=>v.split(':').map(Number);
+const day=(k=key())=>S.days[k]||(S.days[k]={adds:[],ck:[0,0,0,0]});
+const water=d=>d.adds.reduce((a,b)=>a+b,0);
+const stOk=d=>+d.steps>=S.s.sg,slOk=d=>+d.sleep>=S.s.sl;
+const done=d=>water(d)>=S.s.goal&&d.ck[0]&&d.ck[2]&&stOk(d)&&slOk(d);
+const score=d=>[water(d)>=S.s.goal,d.ck[0],d.ck[2],stOk(d),slOk(d)].filter(Boolean).length;
+const used=d=>d.adds.length||d.weight||d.steps||d.sleep||d.waist||d.ck.some(Boolean);
+const start0=()=>new Date(S.s.start+'T00:00');
+const dayN=()=>Math.round((new Date(key()+'T00:00')-start0())/864e5)+1;
+const dayAt=i=>{const s=start0();return new Date(s.getFullYear(),s.getMonth(),s.getDate()+i)};
+
+function runs(){let c=0,b=0;for(let i=0;i<90;i++){const d=S.days[key(dayAt(i))];if(d&&done(d)){c++;b=Math.max(b,c)}else c=0}return b}
+function streak(){let n=0,t=new Date();if(!(S.days[key(t)]&&done(S.days[key(t)])))t.setDate(t.getDate()-1);
+ while(S.days[key(t)]&&done(S.days[key(t)])){n++;t.setDate(t.getDate()-1)}return n}
+
+// weigh-in: every second Friday from start, open Fri-Sun
+function wOpen(t=new Date()){const g=t.getDay();if(g>0&&g<5)return false;
+ const f=Date.UTC(t.getFullYear(),t.getMonth(),t.getDate())-((g+2)%7)*864e5,s=start0(),o=(5-s.getDay()+7)%7,
+ f0=Date.UTC(s.getFullYear(),s.getMonth(),s.getDate()+o),w=Math.round((f-f0)/6048e5);return w>=0&&w%2===0}
+function fridays(n){const t=new Date(),r=[];for(let i=0;i<140&&r.length<n;i++){const d=new Date(t.getFullYear(),t.getMonth(),t.getDate()+i);if(d.getDay()===5&&wOpen(d))r.push(d)}return r}
+
+// sleep: bed and wake are set separately, in any order
+function at(v,lim){const[h,m]=hm(v),d=new Date();d.setHours(h,m,0,0);if(d-Date.now()>lim)d.setDate(d.getDate()-1);return d.getTime()}
+function setBed(v){if(!v)return;const t=at(v,3*36e5),L=S.sl;
+ if(L.wake&&!(t<L.wake&&L.wake-t<16*36e5))S.sl={bed:t,wake:null};else L.bed=t;upd()}
+function setWake(v){if(!v)return;S.sl.wake=at(v,36e5);upd()}
+function fin(){const L=S.sl;if(!L.bed||!L.wake)return;if(L.wake<=L.bed)L.wake+=864e5;if(L.wake>Date.now())return;
+ day(key(new Date(L.wake))).sleep=Math.round((L.wake-L.bed)/36e5*10)/10}
+
+const QS=['Discipline beats motivation. Show up.','The bar does not care about your excuses.','Earn it. One rep at a time.','Be stronger than your last workout.','Nobody is coming to do it for you.','Consistency is the only shortcut.','Forge the body. Forge the habit.','Today you train. Tomorrow you thank yourself.'];
+let qi=dayN()%QS.length;
+
+function rA(){const n=dayN(),dots=[];
+ for(let i=0;i<90;i++){const t=Math.PI*(1-i/89),x=160+135*Math.cos(t),y=162-135*Math.sin(t),dd=S.days[key(dayAt(i))],
+  c=i+1===n?'var(--amb)':dd&&done(dd)?'var(--aur)':dd&&used(dd)?'var(--ice)':'var(--line)';
+  dots.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${i+1===n?6:4}" style="fill:${c}"/>`)}
+ $('#arc').innerHTML=dots.join('')+`<text x="160" y="128" text-anchor="middle" style="fill:var(--ink);font-size:34px;font-weight:800">${n>0?'Day '+Math.min(n,90):'Soon'}</text><text x="160" y="152" text-anchor="middle" style="fill:var(--mut);font-size:13px">of 90</text>`}
+
+function rT(){const d=day(),w=water(d),L=S.sl;
+ $('#wml').textContent=w;$('#wgoal').textContent='of '+S.s.goal+' ml';$('#fill').style.height=Math.min(100,w/S.s.goal*100)+'%';
+ const n=dayN();$('#dayline').textContent=n>0?'Day '+Math.min(n,90)+' of 90':'Starts '+S.s.start;
+ rA();$('#streak').textContent=streak()+'-day streak · best '+runs();
+ $('#quote').textContent=QS[qi];
+ // sleep
+ if(document.activeElement.id!=='bed')$('#bed').value=L.bed?fmt(L.bed):'';
+ if(document.activeElement.id!=='wake')$('#wake').value=L.wake?fmt(L.wake):'';
+ let st='Pick the time you went to bed and the time you woke up. Either one can come first.';
+ if(L.bed&&!L.wake)st='Bed time saved. Add your wake-up time when you are up.';
+ if(!L.bed&&L.wake)st='Wake-up saved. Add when you went to bed.';
+ if(L.bed&&L.wake){const m=Math.round((L.wake-L.bed)/6e4);st=L.wake>Date.now()?'Wake-up planned. Hours are recorded once you are up.':'Slept '+Math.floor(m/60)+'h '+m%60+'m'+(m/60>=S.s.sl?'. Goal met.':'. Goal is '+S.s.sl+'h.')}
+ $('#sstat').textContent=st;
+ // body + steps
+ if(document.activeElement.id!=='steps')$('#steps').value=d.steps??'';
+ const open=wOpen(),lw=Object.keys(S.days).filter(k=>S.days[k].weight).sort().pop();
+ ['weight','waist'].forEach(k=>{const e=$('#'+k);e.disabled=!open;if(document.activeElement.id!==k)e.value=d[k]??''});
+ const nx=fridays(1)[0];
+ $('#wst').textContent=open?'Weigh-in is open until Sunday.':'Weigh-in opens '+(nx?nx.toLocaleDateString(undefined,{weekday:'short',day:'numeric',month:'short'}):'soon')+(lw?'. Last: '+S.days[lw].weight+' kg ('+lw.slice(5)+').':'.');
+ // habits
+ $('#rules').innerHTML=[['Gym workout done',d.ck[0],0],['Protein goal hit',d.ck[2],2]].map(([t,c,i])=>`<label class="ck"><input type="checkbox" data-r="${i}" ${c?'checked':''}>${t}</label>`).join('')+
+ [[S.s.sg.toLocaleString()+'+ steps',stOk(d),(+d.steps||0).toLocaleString()],[S.s.sl+'+ hours sleep',slOk(d),d.sleep?d.sleep+' h':'not logged']].map(([t,c,x])=>`<label class="ck"><input type="checkbox" disabled ${c?'checked':''}>${t}<span class="sm">auto: ${x}</span></label>`).join('');
+ const b=runs();$('#badges').innerHTML=[3,7,14,30,60,90].map(m=>`<div class="bd ${b>=m?'on':''}">${m}<small>days</small></div>`).join('')}
+
+function boom(){if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ for(let i=0;i<36;i++){const e=document.createElement('i');e.textContent=['▲','◆','✦'][i%3];
+  e.style.cssText=`position:fixed;left:50%;top:40%;color:${['#ff6a1a','#ffc233','#ff3d2e'][i%3]};font-size:${14+Math.random()*14}px;pointer-events:none;z-index:20;font-style:normal`;
+  document.body.appendChild(e);const a=Math.random()*6.28,r=80+Math.random()*160;
+  e.animate([{transform:'translate(0,0)',opacity:1},{transform:`translate(${Math.cos(a)*r}px,${-(60+Math.random()*220)}px) rotate(${Math.random()*360}deg)`,opacity:0}],{duration:1400,easing:'ease-out'}).onfinish=()=>e.remove()}}
+function banner(m,b,cb){$('#atxt').textContent=m;$('#aok').textContent=b;$('#aok').onclick=()=>{cb&&cb();$('#alert').hidden=true};$('#alert').hidden=false}
+function upd(){fin();save();rT();if(done(day())&&S.s.cel!==key()){S.s.cel=key();save();boom();banner('Day complete! Streak: '+streak()+' days.','Nice')}}
+function rH(){const ks=Object.keys(S.days).filter(k=>used(S.days[k])).sort().reverse();
+ $('#rows').innerHTML=ks.map(k=>{const d=S.days[k];return `<tr><td>${k.slice(5)}</td><td>${(water(d)/1000).toFixed(1)}L</td><td>${d.sleep||'-'}</td><td>${d.steps||'-'}</td><td>${d.weight||'-'}</td><td>${score(d)}/5</td></tr>`}).join('')||'<tr><td colspan="6" class="sm">No entries yet.</td></tr>';
+ const p=ks.slice().reverse().filter(k=>S.days[k].weight).map(k=>+S.days[k].weight),sp=$('#spark');
+ if(p.length>1){const a=Math.min(...p),b=Math.max(...p),r=b-a||1;
+  sp.innerHTML=`<polyline fill="none" style="stroke:var(--ice)" stroke-width="3" points="${p.map((v,i)=>(i/(p.length-1)*290+5)+','+(70-(v-a)/r*60)).join(' ')}"/>`;
+  $('#wrange').textContent=p[0]+' kg to '+p[p.length-1]+' kg'}else{sp.innerHTML='';$('#wrange').textContent='Log weight on 2+ weigh-ins to see the line.'}
+ $('#csvbox').value='date,water_ml,sleep_h,steps,weight_kg,waist_cm,gym,protein\n'+ks.slice().reverse().map(k=>{const d=S.days[k];return [k,water(d),d.sleep||'',d.steps||'',d.weight||'',d.waist||'',d.ck[0],d.ck[2]].join(',')}).join('\n')}
+const SET=[['sGoal','goal',1],['sW','w',1],['sM','m',1],['sFrom','from',0],['sTo','to',0],['sStart','start',0],['sWt','wt',0],['sSg','sg',1],['sSl','sl',1]];
+function rS(){$('#sOn').checked=S.s.on;$('#sWk').checked=S.s.wk;SET.forEach(([i,k])=>$('#'+i).value=S.s[k])}
+
+// events
+$('#rules').onchange=e=>{const r=e.target.dataset.r;if(r){day().ck[+r]=e.target.checked?1:0;upd()}};
+['steps','weight','waist'].forEach(k=>$('#'+k).oninput=e=>{day()[k]=e.target.value;upd()});
+$('#bed').onchange=e=>setBed(e.target.value);$('#wake').onchange=e=>setWake(e.target.value);
+$('#bnow').onclick=()=>setBed(fmt(Date.now()));$('#wnow').onclick=()=>setWake(fmt(Date.now()));
+const add=n=>{n=+n;if(n>0){day().adds.push(n);upd()}};
+$$('[data-add]').forEach(b=>b.onclick=()=>add(b.dataset.add));
+$('#wadd').onclick=()=>{add($('#wc').value);$('#wc').value=''};
+$('#undo').onclick=()=>{day().adds.pop();upd()};
+$('#quote').onclick=()=>{qi=(qi+1)%QS.length;rT()};
+$$('nav button').forEach(b=>b.onclick=()=>{$$('nav button').forEach(x=>x.classList.toggle('on',x===b));
+ ['today','hist','set'].forEach(t=>$('#'+t).hidden=t!==b.dataset.t);if(b.dataset.t==='hist')rH();if(b.dataset.t==='today')rT()});
+$('#csv').onclick=()=>{rH();const t=$('#csvbox');t.hidden=false;t.select();try{navigator.clipboard.writeText(t.value)}catch(e){}};
+SET.forEach(([i,k,n])=>$('#'+i).onchange=e=>{S.s[k]=n?+e.target.value||S.s[k]:e.target.value||S.s[k];save();rT();sched()});
+$('#sOn').onchange=e=>{S.s.on=e.target.checked;save();syncNative()};$('#sWk').onchange=e=>{S.s.wk=e.target.checked;save();syncNative()};
+
+// reminders: native notifications in the APK, in-page timers in the browser
+const LN=window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform()?window.Capacitor.Plugins.LocalNotifications:null;
+async function syncNative(){if(!LN)return;try{
+ const p=await LN.requestPermissions();if(p.display!=='granted')return;
+ const q=await LN.getPending();if(q.notifications.length)await LN.cancel({notifications:q.notifications});
+ if(!S.s.on)return;
+ const f=x=>x.split(':')[0]*60+ +x.split(':')[1],a=f(S.s.from),b=f(S.s.to),list=[],days=S.s.wk?[2,3,4,5,6]:[1,2,3,4,5,6,7];let id=1;
+ [['Drink water','Have a glass of water now.',Math.max(S.s.w,15),0],['Time to move','Stand up. Walk or stretch for 2 minutes.',Math.max(S.s.m,15),7]].forEach(([t,body,st,off])=>{
+  for(let m=a+st+off;m<b;m+=st)days.forEach(d=>list.push({id:id++,title:t,body,schedule:{on:{weekday:d,hour:Math.floor(m/60),minute:m%60},allowWhileIdle:true}}))});
+ const[wh,wm]=hm(S.s.wt);fridays(8).forEach((d,j)=>{d.setHours(wh,wm,0,0);if(d>Date.now())list.push({id:9000+j,title:'Weigh-in day',body:'Log your weight and waist today.',schedule:{at:d,allowWhileIdle:true}})});
+ if(list.length)await LN.schedule({notifications:list})}catch(e){}}
+let nw,nm;function sched(){const n=Date.now();nw=n+S.s.w*6e4;nm=n+S.s.m*6e4+9e4;syncNative()}
+function inWin(){const n=new Date(),t=n.getHours()*60+n.getMinutes(),f=x=>x.split(':')[0]*60+ +x.split(':')[1],wd=n.getDay();
+ return t>=f(S.s.from)&&t<f(S.s.to)&&(!S.s.wk||(wd>0&&wd<6))}
+function beep(){try{const c=new(window.AudioContext||window.webkitAudioContext)(),o=c.createOscillator();o.connect(c.destination);o.frequency.value=660;o.start();o.stop(c.currentTime+.25)}catch(e){}}
+function fire(t){const m={w:'Time to drink water. Have a glass now.',m:'Stand up. Walk or stretch for 2 minutes.',x:'Weigh-in day. Log your weight and waist.'}[t];
+ banner(m,t==='w'?'Drank 250 ml':'Got it',t==='w'?()=>add(250):null);beep();try{navigator.vibrate&&navigator.vibrate([200,100,200])}catch(e){}
+ try{if('Notification' in window&&Notification.permission==='granted')new Notification('Winter Arc',{body:m})}catch(e){}}
+$('#ax').onclick=()=>$('#alert').hidden=true;
+$('#test').onclick=()=>{try{'Notification' in window&&Notification.requestPermission()}catch(e){}syncNative();fire('w')};
+setInterval(()=>{fin();if(LN||!S.s.on)return;const n=new Date();
+ if(n.getDay()===5&&wOpen(n)&&S.s.lw!==key(n)){const[h,m]=hm(S.s.wt);if(n.getHours()*60+n.getMinutes()>=h*60+m){S.s.lw=key(n);save();fire('x');return}}
+ if(!inWin())return;const t=Date.now();
+ if(t>=nw){nw=t+S.s.w*6e4;fire('w')}else if(t>=nm){nm=t+S.s.m*6e4;fire('m')}},15000);
+
+fin();save();sched();rS();rT();
+</script></body></html>
